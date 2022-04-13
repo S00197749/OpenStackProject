@@ -1,0 +1,8 @@
+{
+    "/":{
+        "target": "https://us-central1-football-league-ls.cloudfunctions.net",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

@@ -1,0 +1,112 @@
+<div class="container-fluid">
+  <form class="row-inline form-inline mb-3">
+    <div class="input-group mb-3">
+      <input name="name" type="text" #teamName placeholder="Search by Team Name" class="form-control">
+      <div class="input-group-prepend">
+        <button (click)="getTeam(teamName.value)" type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </form>
+  <table class="table table-light">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Manager</th>
+        <th scope="col">Est.</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let team of teams$ |async ">
+        <td>{{ team.name }}</td>
+        <td>{{ team.manager }}</td>
+        <td>{{ team.year_est }}</td>
+        <td>
+          <button (click)="showUpdateForm(team)" class="btn btn-primary" style="margin: 5px">Update</button>
+          <button (click)="deleteTeam(team.id)" class="btn btn-danger" style="margin: 5px">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a class="btn btn-primary" routerLink="/add-team" routerLinkActive="active">Add Team</a>
+  
+  <div *ngIf="isUpdateActivated" style="margin-top: 50px;">
+    <h4>Update Team</h4>
+    <form (ngSubmit)="updateTeam(updateForm)" #updateForm="ngForm">
+      <div class="row">
+        <div class="col col-sm-10 col-md-7 col-lg-5 col-xl-4">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control"
+              required
+              [(ngModel)]="teamToBeUpdated.name"
+              style="width: 400px"/>
+          </div>
+          <div class="form-group">
+            <label for="manager">Manager</label>
+            <input
+              type="text"
+              id="manager"
+              name="manager"
+              class="form-control"
+              required
+              [(ngModel)]="teamToBeUpdated.manager"
+              style="width: 400px"/>
+          </div>
+          <div class="form-group">
+            <label for="year_est">Year Est.</label>
+            <input
+              type="number"
+              id="year_est"
+              name="year_est"
+              class="form-control"
+              required
+              [(ngModel)]="teamToBeUpdated.year_est"
+              style="width: 400px"/>
+          </div>
+        </div>
+        <div class="col col-sm-10 col-md-7 col-lg-5 col-xl-4">
+          <div class="form-group">
+            <label for="wins">Wins</label>
+            <input
+              type="number"
+              id="wins"
+              name="wins"
+              class="form-control"
+              required
+              [(ngModel)]="teamToBeUpdated.wins"
+              style="width: 400px"/>
+          </div>
+          <div class="form-group">
+            <label for="draws">Draws</label>
+            <input
+              type="number"
+              id="draws"
+              name="draws"
+              class="form-control"
+              required
+              [(ngModel)]="teamToBeUpdated.draws"
+              style="width: 400px"/>
+          </div>
+          <div class="form-group">
+            <label for="losses">Losses</label>
+            <input
+              type="number"
+              id="losses"
+              name="losses"
+              class="form-control"
+              required
+              [(ngModel)]="teamToBeUpdated.losses"
+              style="width: 400px"/>
+          </div>
+        </div>
+      </div>
+      <button [disabled]="updateForm.invalid" class="btn btn-primary mt-3" type="submit">Update Team</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="form-control"
+        ngModel
+        required
+        style="width: 400px"/>
+    </div>
+    <div class="form-group">
+      <label for="manager">Manager</label>
+      <input
+        type="text"
+        id="manager"
+        name="manager"
+        class="form-control"
+        ngModel
+        required
+        style="width: 400px"/>
+    </div>
+    <div class="form-group">
+      <label for="year_est">Year Est.</label>
+      <input
+        type="number"
+        id="year_est"
+        name="year_est"
+        class="form-control"
+        ngModel
+        required
+        style="width: 400px"/>
+    </div>
+    <button [disabled]="createForm.invalid" class="btn btn-primary mt-3" type="submit">Add</button>
+  </form>
